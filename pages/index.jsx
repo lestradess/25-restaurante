@@ -11,9 +11,9 @@ export default function Home () {
   return (
     <>
       <Layout pagina={ `Menú ${ categoriaActual?.nombre }` }>
-        <h1 className='text-4xl font-black'>{categoriaActual?.nombre}</h1>
+        <h1 className='text-4xl font-black'>{ categoriaActual?.nombre }</h1>
         <p className='text-2xl my-10 '>
-          Elige y personaliza tu pedido a continuación
+          Elige y personaliza tu pedido:
         </p>
         <div className="grid gap-4 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           { categoriaActual?.productos?.map(producto => (

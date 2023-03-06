@@ -8,7 +8,12 @@ const Sidebar = () => {
     const { categorias } = useQuiosco();
     return (
         <>
-            <Image width={300} height={100} src='/assets/img/logo.svg' alt='Imagen logotipo'/>
+            <div className="flex justify-center">
+                <Image
+                    width={ 300 } height={ 100 }
+                    src='/assets/img/logo.svg'
+                    alt='Imagen logotipo' />
+            </div>
             <nav className='mt-10'>
                 { categorias.map(categoria =>(
                     <Categoria 
