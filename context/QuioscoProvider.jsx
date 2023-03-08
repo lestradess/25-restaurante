@@ -14,7 +14,8 @@ const QuioscoProvider = ({ children }) => {
     const [ modal, setModal ] = useState(false);
     const [ pedido, setPedido ] = useState([]);
     const [ nombre, setNombre ] = useState('');
-    const [total, setTotal] = useState(0);
+    const [ total, setTotal ] = useState(0);
+    const [pendientes, setPendientes] = useState(true);
 
     const obtenerCategorias = async () => {
         const { data } = await axios('/api/categorias')
@@ -29,9 +30,9 @@ const QuioscoProvider = ({ children }) => {
 
     }, [ categorias ]);
     useEffect(() => {
-        const nuevoTotal = pedido.reduce((total, producto)=>(producto.precio * producto.cantidad)+ total, 0);
+        const nuevoTotal = pedido.reduce((total, producto) => (producto.precio * producto.cantidad) + total, 0);
         setTotal(nuevoTotal);
-    }, [pedido]);
+    }, [ pedido ]);
     const handleClickCategoria = id => {
         const categoria = categorias.filter(cat => cat.id === id);
         setCategoriaActual(categoria[ 0 ]);
@@ -65,11 +66,25 @@ const QuioscoProvider = ({ children }) => {
         const pedidoActualizado = pedido.filter(producto => producto.id !== id);
         setPedido(pedidoActualizado);
     }
-    const colocarOrden = async (e)=>{
+    const colocarOrden = async (e) => {
         e.preventDefault();
 
-    }
-
+        try {
+            await axios.post('/api/ordenes', { pedido, nombre, total, fecha: Date.now().toString() })
+            // Resetear la app
+            setCategoriaActual(categorias[ 0 ])
+            setPedido([])
+            setNombre('')
+            setTotal(0)
+            toast.success('Pedido Realizado Correctamente')
+            setTimeout(() => {
+                router.push('/')
+            }, 3000)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+    
     return (
         <QuioscoContex.Provider
             value={ {
@@ -88,6 +103,8 @@ const QuioscoProvider = ({ children }) => {
                 setNombre,
                 colocarOrden,
                 total,
+                pendientes,
+                setPendientes,
             } }
         >
             { children }

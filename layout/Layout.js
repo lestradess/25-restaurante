@@ -26,6 +26,7 @@ export default function Layout ({ children, pagina }) {
         <>
             <Head>
                 <title>Café - { pagina }</title>
+                <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
                 <meta name="description" conten="Quiosco Cafetería" />
             </Head>
             <div className='md:flex'>
@@ -45,7 +46,10 @@ export default function Layout ({ children, pagina }) {
                     <ModalProducto />
                 </Modal>
             )}
-            <ToastContainer />
+            <ToastContainer 
+                position="bottom-right"
+                autoClose={3000}
+            />
         </>
     )
 }
