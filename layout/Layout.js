@@ -6,6 +6,7 @@ import { ModalProducto } from '../components/ModalProducto';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Pasos from '../components/Pasos';
+import { useRouter } from 'next/router';
 
 const customStyles = {
     content: {
@@ -21,7 +22,7 @@ Modal.setAppElement('#__next');
 
 export default function Layout ({ children, pagina }) {
     const { modal } = useQuiosco();
-
+    const router = useRouter();
     return (
         <>
             <Head>
@@ -30,12 +31,14 @@ export default function Layout ({ children, pagina }) {
                 <meta name="description" conten="Quiosco Cafetería" />
             </Head>
             <div className='md:flex'>
-                <aside className='md:w-4/12 xl:w-1/4 2xl:w-1/5 mt-8'>
-                    <Sidebar />
+                <aside className='md:w-4/12 xl:w-1/4 2xl:w-1/5 md:mt-10 '>
+                    { router.pathname === '/' ? <Sidebar /> : ''}
                 </aside>
                 <main className='md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll'>
-                    <Pasos />
-                    <div className='p-10'>{ children }</div>
+                    <div className='px-10 pt-10 md:pt-28'>{ children }</div>
+                    <div className=' fixed top-0 w-full md:fixed md:w-8/12 xl:w-3/4 2xl:w-4/5 bg-white'>
+                        <Pasos />
+                    </div>
                 </main>
             </div>
             {modal && (
