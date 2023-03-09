@@ -14,7 +14,7 @@ const Sidebar = () => {
                     src='/assets/img/logo.svg'
                     alt='Imagen logotipo' />
             </div>
-            <nav className='md:mt-10 md:flex-none md:static md:flex-col flex top-28 absolute mb-5 h-5 w-auto'>
+            <nav className='md:mt-10 md:flex-none md:static md:flex-col flex top-28 absolute mb-5 h-5'>
                 { categorias.map(categoria =>(
                     <Categoria 
                         key={categoria.id}

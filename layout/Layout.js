@@ -30,15 +30,16 @@ export default function Layout ({ children, pagina }) {
                 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
                 <meta name="description" conten="Quiosco Cafetería" />
             </Head>
-            <div className='md:flex'>
-                <aside className='md:w-4/12 xl:w-1/4 2xl:w-1/5 md:mt-10 '>
+            <div className='md:flex flex-none'>
+                <aside className='md:w-4/12 xl:w-1/4 2xl:w-1/5 md:mt-10'>
                     { router.pathname === '/' ? <Sidebar /> : ''}
                 </aside>
-                <main className='md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll'>
-                    <div className='px-10 pt-10 md:pt-28'>{ children }</div>
+                <main className='md:w-8/12 xl:w-3/4 2xl:w-4/5  w-screen h-screen overflow-y-scroll'>
                     <div className=' fixed top-0 w-full md:fixed md:w-8/12 xl:w-3/4 2xl:w-4/5 bg-white'>
                         <Pasos />
                     </div>
+                    <div className='px-10 pt-10 md:pt-28'>{ children }</div>
+                    
                 </main>
             </div>
             {modal && (

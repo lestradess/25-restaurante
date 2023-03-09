@@ -8,7 +8,7 @@ const Categoria = ({ categoria }) => {
     return (
         <div className='flex'>
             <button
-                className={ `${ categoriaActual?.id === id ? 'bg-amber-400' : '' }  flex items-center gap-4 md:w-full border p-4 hover:bg-amber-400 text-2xl font-bold hover: cursor-pointer` }
+                className={ `${ categoriaActual?.id === id ? 'bg-amber-400' : '' } flex  md:w-full border p-4 hover:bg-amber-400 hover: cursor-pointer text-xs md:font-bold md:text-2xl md:gap-3` }
                 type='button'
                 onClick={ () => handleClickCategoria(id) }
             >
@@ -21,7 +21,7 @@ const Categoria = ({ categoria }) => {
                         className=''
                     />
                 </div>
-                <div className='collapse md:visible'>
+                <div className=''>
                     { nombre }
                 </div>
             </button>
